@@ -1,17 +1,10 @@
-import {
-  _decorator,
-  Component,
-  EventKeyboard,
-  KeyCode,
-  Vec3,
-  Input,
-  game,
-} from "cc";
-const { ccclass, property } = _decorator;
+import type { EventKeyboard } from 'cc';
+import { _decorator, Component, KeyCode, Vec3, Input, game } from 'cc';
 
+const { ccclass, property } = _decorator;
 const keyPressingMap = {};
 
-@ccclass("NewComponent")
+@ccclass('NewComponent')
 export class NewComponent extends Component {
   inputIns = new Input();
   moveDirection = new Vec3(0, 0, 0); // 移动方向
@@ -27,6 +20,7 @@ export class NewComponent extends Component {
   // 键盘按下事件处理
   private onKeyPressing(event: EventKeyboard) {
     const { keyCode } = event;
+
     keyPressingMap[keyCode] = true;
     switch (keyCode) {
       case KeyCode.ARROW_LEFT:
@@ -47,8 +41,9 @@ export class NewComponent extends Component {
   // 键盘抬起事件处理
   private onKeyUp(event: EventKeyboard) {
     const { keyCode } = event;
+
     keyPressingMap[keyCode] = false;
-    console.log("=======> keyPressingMap:", keyPressingMap);
+    console.log('=======> keyPressingMap:', keyPressingMap);
     switch (keyCode) {
       case KeyCode.ARROW_LEFT:
         keyPressingMap[KeyCode.ARROW_RIGHT] === true
@@ -84,7 +79,7 @@ export class NewComponent extends Component {
     this.node.setPosition(
       this.node.position
         .clone()
-        .add(this.moveDirection.clone().multiplyScalar(6))
+        .add(this.moveDirection.clone().multiplyScalar(6)),
     );
   }
 }
