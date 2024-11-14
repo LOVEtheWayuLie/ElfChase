@@ -3,7 +3,7 @@ import { MovementController } from './controller';
 
 const { ccclass } = _decorator;
 
-@ccclass('NewComponent')
+@ccclass('RoleA')
 export class NewComponent extends Component {
   movementCon = new MovementController({
     initStep: { x: 1, y: 1.5 },
@@ -22,7 +22,7 @@ export class NewComponent extends Component {
     this.node.setPosition(
       this.node.position
         .clone()
-        .add(this.movementCon.moveDirection.clone().multiplyScalar(6)),
+        .add(this.movementCon.getMoveDirection().multiplyScalar(6)),
     );
   }
 }

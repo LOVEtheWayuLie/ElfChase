@@ -43,6 +43,26 @@ export class MovementController {
       prop: 'y',
       reverseKeyCode: KeyCode.ARROW_UP,
     },
+    [KeyCode.KEY_A]: {
+      symbol: '-',
+      prop: 'x',
+      reverseKeyCode: KeyCode.KEY_D,
+    },
+    [KeyCode.KEY_D]: {
+      symbol: '+',
+      prop: 'x',
+      reverseKeyCode: KeyCode.KEY_A,
+    },
+    [KeyCode.KEY_W]: {
+      symbol: '+',
+      prop: 'y',
+      reverseKeyCode: KeyCode.KEY_S,
+    },
+    [KeyCode.KEY_S]: {
+      symbol: '-',
+      prop: 'y',
+      reverseKeyCode: KeyCode.KEY_W,
+    },
   } as const;
 
   constructor(props: TypeMovementControllerProps) {
@@ -98,6 +118,10 @@ export class MovementController {
 
   destroyEvent() {
     this.destroyFnList.forEach((fn) => fn());
+  }
+
+  getMoveDirection() {
+    return this.moveDirection.clone();
   }
 }
 
