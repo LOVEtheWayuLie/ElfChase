@@ -1,28 +1,30 @@
-import { _decorator, Component } from 'cc';
+import { RigidBody2D, _decorator, Component, BoxCollider2D } from 'cc';
 import { MovementController } from './controller';
 
-const { ccclass } = _decorator;
+const { ccclass, property } = _decorator;
 
 @ccclass('RoleA')
 export class NewComponent extends Component {
-  movementCon = new MovementController({
-    initStep: { x: 1, y: 1.5 },
-    node: this,
-  });
+  @property(MovementController)
+  movementCon = null!;
+
+  @property(RigidBody2D)
+  rigidBody: RigidBody2D = null!;
 
   onLoad() {
-    this.movementCon.loadEvent();
+    this.rigidBody = this.getComponent(RigidBody2D);
+    this.addComponent(BoxCollider2D);
+    this.movementCon = this.addComponent(MovementController);
+    this.movementCon.init({
+      initStep: { x: 1, y: 0 },
+    });
   }
 
-  onDestroy() {
-    this.movementCon.destroyEvent();
-  }
+  onDestroy() {}
 
   update() {
     this.node.setPosition(
-      this.node.position
-        .clone()
-        .add(this.movementCon.getMoveDirection().multiplyScalar(6)),
+      this.node.position.clone().add(this.movementCon.getMoveDirection()),
     );
   }
 }
