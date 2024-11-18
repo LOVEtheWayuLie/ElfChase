@@ -140,8 +140,6 @@ export class MovementController extends Component {
 
   update() {
     const { linearVelocity } = this.node.getComponent(RigidBody2D);
-
-    console.log(linearVelocity.x, linearVelocity.y, 1);
   }
 
   onDestroy() {

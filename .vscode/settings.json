@@ -1,0 +1,8 @@
+{
+  "triggerTaskOnSave.tasks": {
+    "CocosCreator compile": ["*.ts"]
+  },
+  "files.exclude": {
+    "**/*.meta": true
+  }
+}
